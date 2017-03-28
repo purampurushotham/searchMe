@@ -1,0 +1,59 @@
+[
+  {
+    "firstName": "purushotham",
+    "lastName": "puram",
+    "dateOfBirth": "08/12/1993",
+    "addresses": [
+      {
+        "street": "kphb",
+        "houserNo": "104",
+        "city": "hyderabad",
+        "state": "Telangana"
+      },
+      {
+        "street": "stv",
+        "houserNo": "19-4-9/7",
+        "city": "tirupati",
+        "state": "Andhra pradesh"
+      }
+    ]
+  },
+  {
+    "firstName": "subramanyam",
+    "lastName": "puram",
+    "dateOfBirth": "13/01/1968",
+    "addresses": [
+      {
+        "street": "Reddy colony",
+        "houserNo": "198-47/7",
+        "city": "mancherial",
+        "state": "Telangana"
+      },
+      {
+        "street": "avilal",
+        "houserNo": "1255",
+        "city": "tirupati",
+        "state": "Andhra pradesh"
+      }
+    ]
+  },
+  {
+    "firstName": "bhavana",
+    "lastName": "dhayapule",
+    "dateOfBirth": "03/08/1992",
+    "addresses": [
+      {
+        "street": "annapuri",
+        "houserNo": "18-4/45",
+        "city": "anatapur",
+        "state": "andhra pradesh"
+      },
+      {
+        "street": "kphb",
+        "houserNo": "19-4-9/7",
+        "city": "Hyderabad",
+        "state": "Telangana"
+      }
+    ]
+  }
+]

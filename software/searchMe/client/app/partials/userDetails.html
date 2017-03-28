@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h1 class="panel-title"> User form</h1>
+            </div>
+            <br>
+            <form class="form-inline text-center" ng-submit="hm.getUserDetails()">
+                <div class="form-group">
+                    <label for="firstName">firstName</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="enter first name"ng-model ="hm.user.firstName">
+                </div>
+                <div class="form-group">
+                    <label for="lastName">lastName</label>
+                    <input type="text" class="form-control" id="lastName" ng-model="hm.user.lastName">
+                </div>
+                <br>
+                <br>
+                <div class="form-group">
+                    <label for="dateOfBirth">dateOfBirth</label>
+                    <input type="date" class="form-control" id="dateOfBirth" ng-model="hm.user.dateOfBirth">
+                </div>
+                <div class="form-group">
+                    <label for="Address">Address</label>
+                    <textarea  class="form-control" ng-model="hm.user.address" ></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">submit</button>
+            </form>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3  class="panel-title text-center">Search Me</h3>
+            </div>
+            <div class="col-md-12 panel-body" >
+                <table ng-table="hm.tableParams" class="table table-condensed table-bordered table-striped">
+                    <p ng-show = "!hm.exists" class="alert-info">No records found </p>
+                    <tr  ng-show ="hm.exists" ui-sref="view({id:$index})" ng-repeat="row in $data track by $index">
+                        <td data-title="'post_id'"  >{{$index+1}}</td>
+                        <td data-title="'Description'" filter="{text: 'text'}" sortable="'text'" ng-bind="row.text"></td>
+                        <td data-title="'postedOn'" filter="{postedOn: 'date'}" sortable="'postedOn'" ng-bind="row.postedOn"></td>
+                        <td data-title="'postedBy'" filter="{postedBy: 'text'}" sortable="'postedBy'" ng-bind="row.postedBy"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
