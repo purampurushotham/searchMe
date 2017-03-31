@@ -10,10 +10,7 @@ var ErrorResult=require('../../models/errorResult/errorResult')
 var personRoute={
     getUserDetails : function (req,res) {
         var queryParam = (req.query && req.query.q) ? JSON.parse(req.query.q) : req.body.q
-        console.log(queryParam)
-        if(queryParam.user.dateOfBirth!=null){
         var queryObject=appUtils.getGeneralisedQuery(queryParam.user);
-        console.log(queryObject)
         queryObject.push({"$unwind": "$addresses"},
             {"$lookup": {"from": "addresses", "localField": "addresses", "foreignField": "_id", "as": "address"}});
         if(queryParam.address){
@@ -38,32 +35,22 @@ var personRoute={
                 }
             },
             {"$project": {"userDetails.address": 1, "user": {"$arrayElemAt": ["$userDetails.user", 0]}}});
-        console.log(queryObject);
         personModel.aggregate(queryObject).skip(queryParam.page).limit(queryParam.page_size).exec(function (err, userObject) {
             if (err) {
-                console.log(err);
                 return res.json(new ErrorResult("failed","query is failed",[{"msg": "error"}]))
-            } else {
-                console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                console.log(userObject)
+            }else {
                 personModel.aggregate(queryObject).exec(function(err1,total){
-                   if(err1){
-                       return res.json(new ErrorResult("failed","query is failed",[{"msg": "error"}]))
-                   }else {
-                       console.log("&&&&&&&&&&&&&&&&&&&")
-                       console.log(total)
+                    if(err1){
+                        return res.json(new ErrorResult("failed","query is failed",[{"msg": "error"}]))
+                    }else {
                         var pagination={}
-                       pagination.total=total.length
-                       res.send(new SuccessResponse("ok",userObject,pagination,"success"));
-                   }
+                        pagination.total=total.length
+                        res.send(new SuccessResponse("ok",userObject,pagination,"success"));
+                    }
                 });
 
             }
         });
-    }
-        else {
-            return res.json(new ErrorResult("failed","query is failed",[{"msg": "error"}]))
-        }
     }
 }
 module.exports=personRoute;

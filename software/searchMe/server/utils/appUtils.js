@@ -15,15 +15,12 @@ var appUtils ={
             QArray.push({"lastName" : query.lastName});
         }
         if(query.dateOfBirth && query.dateOfBirth != null){
-            console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-            console.log(new Date(query.dateOfBirth))
             QArray.push({"dateOfBirth" : new Date(query.dateOfBirth)});
         }
         if(QArray.length > 0){
-            console.log(QArray);
             queryObject.push({"$match" : {$or : QArray}})
         }
         return queryObject;
     }
 }
-module.exports=appUtils
+module.exports=appUtils;
