@@ -8,15 +8,11 @@
     searchService.$inject = ['api','$q']
     function searchService(api, q) {
         var searchServices = {
-            getUserDetails: getUserDetails,
-            getMultipleFields: getMultipleFields
+            getUserDetails: getUserDetails
         };
         return searchServices;
-        
-        function getMultipleFields(query) {
-            return api.getMultipleFields({q: query}).$promise;
-        }
         function getUserDetails(query) {
+            console.log(query)
             return api.getUserDetails({q: query}).$promise;
         }
 

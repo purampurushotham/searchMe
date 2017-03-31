@@ -18,10 +18,6 @@
             'getUserDetails': {
                 method: "GET",
                 url: "/api/v1.0/getUserDetails"
-            },
-            'getMultipleFields' : {
-                method: "GET",
-                url: "/api/v1.0/getMultipleFields"
             }
         }
     }

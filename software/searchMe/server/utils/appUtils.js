@@ -7,22 +7,23 @@ var addressesModel=require('../models/addressesModel/addressesModel');
 var appUtils ={
     getGeneralisedQuery: function(query){
         var QArray=[];
-        if(tempAddress.length >0 && tempAddress.length <=4 ){
-            query.street=tempAddress[0];
-            QArray.push(query);
+        var queryObject=[]
+        if(query.firstName){
+            QArray.push({"firstName" : query.firstName});
         }
-        if(tempAddress.length >0 && tempAddress.length <= 3 ){
-            query.houseNo=tempAddress[1];
-            QArray.push(query);
+        if(query.lastName){
+            QArray.push({"lastName" : query.lastName});
         }
-        if(tempAddress.length >0 && tempAddress.length <= 2 ){
-            query.houseNo=tempAddress[2];
-            QArray.push(query);
+        if(query.dateOfBirth && query.dateOfBirth != null){
+            console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+            console.log(new Date(query.dateOfBirth))
+            QArray.push({"dateOfBirth" : new Date(query.dateOfBirth)});
         }
-        if(tempAddress.length >0 && tempAddress.length <= 1 ){
-            query.houseNo=tempAddress[3];
-            QArray.push(query);
+        if(QArray.length > 0){
+            console.log(QArray);
+            queryObject.push({"$match" : {$or : QArray}})
         }
+        return queryObject;
     }
 }
 module.exports=appUtils

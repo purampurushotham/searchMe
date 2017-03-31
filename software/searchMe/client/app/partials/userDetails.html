@@ -9,10 +9,12 @@
                 <h1 class="panel-title"> User form</h1>
             </div>
             <br>
+            <p class="alert-danger" ng-show="hm.errorMessage">please select any one field</p>
             <form class="form-inline text-center" ng-submit="hm.getUserDetails()">
-                <div class="form-group">
+                <div class="form-group" >
                     <label for="firstName">firstName</label>
-                    <input type="text" class="form-control" id="firstName" placeholder="enter first name"ng-model ="hm.user.firstName">
+                    <input type="text" class="form-control" id="firstName" placeholder="enter first name"ng-model ="hm.user.firstName" >
+
                 </div>
                 <div class="form-group">
                     <label for="lastName">lastName</label>
@@ -29,6 +31,7 @@
                     <textarea  class="form-control" ng-model="hm.user.address" ></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">submit</button>
+                <span ng-show="hm.user.$pristine"> please enter any field</span>
             </form>
         </div>
         <div class="panel panel-info">
@@ -37,12 +40,15 @@
             </div>
             <div class="col-md-12 panel-body" >
                 <table ng-table="hm.tableParams" class="table table-condensed table-bordered table-striped">
-                    <p ng-show = "!hm.exists" class="alert-info">No records found </p>
-                    <tr  ng-show ="hm.exists" ui-sref="view({id:$index})" ng-repeat="row in $data track by $index">
-                        <td data-title="'post_id'"  >{{$index+1}}</td>
-                        <td data-title="'Description'" filter="{text: 'text'}" sortable="'text'" ng-bind="row.text"></td>
-                        <td data-title="'postedOn'" filter="{postedOn: 'date'}" sortable="'postedOn'" ng-bind="row.postedOn"></td>
-                        <td data-title="'postedBy'" filter="{postedBy: 'text'}" sortable="'postedBy'" ng-bind="row.postedBy"></td>
+                    <!--<p ng-show = "!hm.exists" class="alert-info">No records found </p>-->
+                    <tr ng-repeat ="row in hm.tableParams.data">
+                        <td data-title="'firstName'" filter="{firstName: 'text'}" sortable="'firstName'"  ng-bind="row.user.firstName"></span></td>
+                        <td data-title="'lastName'" filter="{lastName: 'text'}" sortable="'lastName'" ng-bind="row.user.lastName"></td>
+                        <td data-title="'dateOfBirth'" filter="{dateOfBirth: 'date'}" sortable="'dateOfBirth'" ng-bind="row.user.dateOfBirth"></td>
+                        <td data-title="'address'" filter="{address: 'text'}" sortable="'address'" ><span ng-repeat="each in row.userDetails">
+                        <pre> Street :{{each.address.street}}, State : {{each.address.state}},City :{{each.address.city}}</pre>
+                             </span>
+                        </td>
                     </tr>
                 </table>
             </div>
