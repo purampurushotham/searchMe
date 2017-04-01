@@ -1,1 +1,10 @@
-<home-component></home-component>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row">
+        <user-form-component submit-user="hm.submitUser(hm.user)" user="hm.user"></user-form-component>
+        <user-table ng-if="hm.user" submit ="hm.submitUser(hm.user)"table-params="hm.tableParams"></user-table>
+    </div>
+</div>

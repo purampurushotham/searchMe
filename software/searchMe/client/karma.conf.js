@@ -33,7 +33,7 @@ module.exports = function(config) {
             "app/modules/searchMe/header/header.module.js",
             "app/modules/searchMe/header/header.component.js",
             "app/modules/searchMe/home/home.module.js",
-            "app/modules/searchMe/home/home.component.js",
+            "app/modules/searchMe/home/home.controller.js",
         "app/modules/searchMe/Userform/userForm.module.js",
         "app/modules/searchMe/Userform/userForm.component.js",
         "app/modules/searchMe/userTable/userTable.module.js",

@@ -1,0 +1,20 @@
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3  class="panel-title text-center">Search Me</h3>
+    </div>
+    <div class="col-md-12 panel-body" >
+        <table ng-table="tm.tableParams" class="table table-condensed table-bordered table-striped">
+            <!--<p ng-show = "!tm.exists" class="alert-info">No records found </p>-->
+            <tr ng-repeat ="row in tm.tableParams.data">
+                <td data-title="'firstName'" filter="{firstName: 'text'}" sortable="'firstName'"  ng-bind="row.user.firstName"></span></td>
+                <td data-title="'lastName'" filter="{lastName: 'text'}" sortable="'lastName'" ng-bind="row.user.lastName"></td>
+                <td data-title="'dateOfBirth'" filter="{dateOfBirth: 'date'}" sortable="'dateOfBirth'" ng-bind="row.user.dateOfBirth"></td>
+                <td data-title="'address'" filter="{address: 'text'}" sortable="'address'" ><span ng-repeat="each in row.userDetails">
+                        <pre> Street :{{each.address.street}}, State : {{each.address.state}},City :{{each.address.city}}</pre>
+                             </span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

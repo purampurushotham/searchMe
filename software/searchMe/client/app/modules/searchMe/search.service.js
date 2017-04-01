@@ -12,7 +12,6 @@
         };
         return searchServices;
         function getUserDetails(query) {
-            console.log(query)
             return api.getUserDetails({q: query}).$promise;
         }
 

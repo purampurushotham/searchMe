@@ -12,9 +12,9 @@
         $stateProvider
             .state('home',{
                 url : "/home",
-                templateUrl  :"app/partials/home.html"
-                /*controller : 'homeCtrl',
-                controllerAs : 'hm'*/
+                templateUrl  :"app/partials/home.html",
+                controller : 'homeController',
+                controllerAs : 'hm'
 
             });
     }

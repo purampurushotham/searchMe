@@ -9,6 +9,8 @@
         'ui.bootstrap',
         'ngTable',
         'SM.header',
-        'SM.home'
+        'SM.home',
+        'SM.userform',
+        'SM.userTable'
     ]);
 }())
