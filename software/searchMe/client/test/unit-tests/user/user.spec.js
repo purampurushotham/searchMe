@@ -10,7 +10,6 @@ describe('home controller',function () {
     var responseResultObj =
     {
         "status" : "ok",
-
         "data": [
             {  "_id": "58da457d0d32af59df437b50",
                 "dateOfBirth": "1992-08-02T18:30:00.000Z",
@@ -61,6 +60,7 @@ describe('home controller',function () {
             expect(searchService.getUserDetails).toHaveBeenCalled();
         });
     });
+    //test case for submit user
     describe('submitUser', function () {
         user = {
             "firstName" : "PURUSHOTHAM"
@@ -77,6 +77,7 @@ describe('home controller',function () {
             expect(JSON.stringify(controller.userTable)).toBe(JSON.stringify(responseResultObj.data));
             expect(controller.total).toBe(responseResultObj.pagination.total)
         });
+        //test case for date
         it('uses the mocked time with moment', function() {
             var dateofBirth=new Date(responseResultObj.data[0].dateOfBirth).toLocaleDateString();
             console.log(dateofBirth)
@@ -94,14 +95,28 @@ describe('home controller',function () {
             "state"  : responseResultObj.data[0].addresses[0].state,
             "city" : responseResultObj.data[0].addresses[0].city
         };
+        //test case for minimum length of user
         it("user names length",function () {
             expect(user.firstName.length).toBeGreaterThanOrEqual(4);
             expect(user.lastName.length).toBeGreaterThanOrEqual(4)
         });
+        it("user names length",function () {
+            expect(user.firstName.length).toBeLessThanOrEqual(20)
+            expect(user.lastName.length).toBeLessThanOrEqual(20)
+        });
+        //test case for minimum length of address
         it("addresses minimum length",function () {
-            expect(address.street.length).toBeGreaterThanOrEqual(4);
-            expect(address.city.length).toBeGreaterThanOrEqual(4);
-            expect(address.state.length).toBeGreaterThanOrEqual(4)
+            expect(address.street.length).toBeLessThanOrEqual(20)
+            expect(address.city.length).toBeLessThanOrEqual(20);
+            expect(address.state.length).toBeLessThanOrEqual(20)
+        });
+        //check user is empty
+        it('given input empty', function () {
+            user = {};
+            var $scope = {};
+            var controller = $controller('homeController', { $scope: $scope });
+            controller.submitUser(user);
+            expect(controller.errorMessage).toEqual(true);
         });
     });
 });
