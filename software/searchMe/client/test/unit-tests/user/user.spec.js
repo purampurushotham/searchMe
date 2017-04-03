@@ -5,8 +5,8 @@
 describe('home controller',function () {
     var homeController;
     var $controller, $injector, $scope, $rootScope
-    var searchService, $q;
-    var user;
+    var searchService, $q,moment;
+    var user,address;
     var responseResultObj =
     {
         "status" : "ok",
@@ -36,9 +36,8 @@ describe('home controller',function () {
         "pagination": {
             "total": 1
 
-
         }
-    }
+    };
     beforeEach(function () {
         module('SM');
         module('SM.home');
@@ -61,11 +60,11 @@ describe('home controller',function () {
         it("tracks that the spy was called", function() {
             expect(searchService.getUserDetails).toHaveBeenCalled();
         });
-
     });
     describe('submitUser', function () {
         user = {
-            "firstName" : "purushotham"
+            "firstName" : "PURUSHOTHAM"
+
         };
         user.pagination = {};
         user.pagination.numberToSkip = 0;
@@ -76,6 +75,33 @@ describe('home controller',function () {
             controller.submitUser(user);
             expect(controller.userTable.length).toBe(1);
             expect(JSON.stringify(controller.userTable)).toBe(JSON.stringify(responseResultObj.data));
+            expect(controller.total).toBe(responseResultObj.pagination.total)
+        });
+        it('uses the mocked time with moment', function() {
+            var dateofBirth=new Date(responseResultObj.data[0].dateOfBirth).toLocaleDateString();
+            console.log(dateofBirth)
+            expect(dateofBirth).toEqual("03/08/1992");
+        });
+    });
+    // test cases for client side validations
+    describe('user', function () {
+        user = {
+            "firstName": responseResultObj.data[0].firstName,
+            "lastName" :responseResultObj.data[0].lastName
+        };
+        address={
+            "street" : responseResultObj.data[0].addresses[0].street,
+            "state"  : responseResultObj.data[0].addresses[0].state,
+            "city" : responseResultObj.data[0].addresses[0].city
+        };
+        it("user names length",function () {
+            expect(user.firstName.length).toBeGreaterThanOrEqual(4);
+            expect(user.lastName.length).toBeGreaterThanOrEqual(4)
+        });
+        it("addresses minimum length",function () {
+            expect(address.street.length).toBeGreaterThanOrEqual(4);
+            expect(address.city.length).toBeGreaterThanOrEqual(4);
+            expect(address.state.length).toBeGreaterThanOrEqual(4)
         });
     });
 });

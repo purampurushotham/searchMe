@@ -25,6 +25,7 @@ module.exports = function(config) {
             "bower_components/angular-resource/angular-resource.min.js",
             "bower_components/bootstrap/dist/js/bootstrap.min.js",
             "node_modules/ng-table/bundles/ng-table.min.js",
+            "bower_components/moment/min/moment.min.js",
             "app/modules/searchMe/app.module.js",
             "app/modules/searchMe/app.config.js",
             "app/modules/searchMe/app.run.js",
