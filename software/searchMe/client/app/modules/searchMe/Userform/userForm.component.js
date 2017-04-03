@@ -14,7 +14,6 @@
             }
         });
     function formCtrl(){
-        console.log("form ctrl");
         var vm=this;
 
     }

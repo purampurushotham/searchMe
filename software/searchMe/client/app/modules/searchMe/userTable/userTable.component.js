@@ -14,6 +14,5 @@
         });
     function userTable() {
         var vm = this;
-        console.log(vm.tableParams)
     }
 }())
