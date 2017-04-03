@@ -13,10 +13,10 @@
         console.log(vm.user)
         vm.submitUser = function (user) {
             if (user.dateOfBirth == null && user.firstName == null && user.lastName == null && user.address == null) {
-                vm.errorMessage = false;
+                vm.errorMessage = true;
             }
             else {
-                vm.errorMessage = true;
+                vm.errorMessage = false;
                 //vm.loadTable()
                 vm.tableParams.reload();
             }
@@ -42,10 +42,9 @@
                             if(response.status=="ok") {
                                 vm.userTable = response.data;
                                 params.total(response.pagination.total);
-                               /* var filterObj = params.filter(), filteredData = $filter('filter')(vm.userTable, filterObj);
+                                var filterObj = params.filter(), filteredData = $filter('filter')(vm.userTable, filterObj);
                                 var sortObj = params.sorting(), orderedData = $filter('orderBy')(filteredData, filterObj);
-                               */
-                                data = vm.userTable;
+                                data = orderedData;
                             }
                             else
                                 data=[];

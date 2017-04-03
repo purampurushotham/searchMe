@@ -4,6 +4,7 @@
         </div>
     </div>
         <user-form-component submit-user="hm.submitUser(hm.user)" user="hm.user"></user-form-component>
+    <p ng-show="hm.errorMessage" class="alert-danger">Please select any one field</p>
         <user-table ng-if="hm.userTable" table-params="hm.tableParams"></user-table>
     </div>
 </div>
