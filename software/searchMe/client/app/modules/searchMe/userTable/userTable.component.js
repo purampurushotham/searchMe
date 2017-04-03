@@ -13,6 +13,7 @@
             }
         });
     function userTable() {
-        var vm=this;
+        var vm = this;
+        console.log(vm.tableParams)
     }
 }())

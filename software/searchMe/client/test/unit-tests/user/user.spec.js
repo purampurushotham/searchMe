@@ -58,6 +58,10 @@ describe('home controller',function () {
                 then: function(callback) {return callback(responseResultObj);}
             };
         });
+        it("tracks that the spy was called", function() {
+            expect(searchService.getUserDetails).toHaveBeenCalled();
+        });
+
     });
     describe('submitUser', function () {
         user = {

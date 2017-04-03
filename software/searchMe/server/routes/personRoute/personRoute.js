@@ -9,7 +9,10 @@ var SuccessResponse=require('../../models/successResponse/successResponse')
 var ErrorResult=require('../../models/errorResult/errorResult')
 var personRoute={
     getUserDetails : function (req,res) {
-        var queryParam = (req.query && req.query.q) ? JSON.parse(req.query.q) : req.body.q
+        var queryParam = (req.query && req.query.q) ? JSON.parse(req.query.q) : req.body.q;
+        if(Object.keys(queryParam.user).length === 0){
+           return res.json(new ErrorResult("failed","user is not defined",[{'msg': 'failed'}]))
+        }
         var queryObject=appUtils.getGeneralisedQuery(queryParam.user);
         queryObject.push({"$unwind": "$addresses"},
             {"$lookup": {"from": "addresses", "localField": "addresses", "foreignField": "_id", "as": "address"}});
