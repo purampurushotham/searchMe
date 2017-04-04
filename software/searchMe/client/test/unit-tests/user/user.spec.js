@@ -64,7 +64,6 @@ describe('home controller',function () {
     describe('submitUser', function () {
         user = {
             "firstName" : "PURUSHOTHAM"
-
         };
         user.pagination = {};
         user.pagination.numberToSkip = 0;
@@ -105,10 +104,15 @@ describe('home controller',function () {
             expect(user.lastName.length).toBeLessThanOrEqual(20)
         });
         //test case for minimum length of address
-        it("addresses minimum length",function () {
+        it("addresses maximum length",function () {
             expect(address.street.length).toBeLessThanOrEqual(20)
             expect(address.city.length).toBeLessThanOrEqual(20);
             expect(address.state.length).toBeLessThanOrEqual(20)
+        });
+        it("addresses minimum length",function () {
+            expect(address.street.length).toBeGreaterThanOrEqual(4);
+            expect(address.state.length).toBeGreaterThanOrEqual(4)
+            expect(address.city.length).toBeGreaterThanOrEqual(4)
         });
         //check user is empty
         it('given input empty', function () {

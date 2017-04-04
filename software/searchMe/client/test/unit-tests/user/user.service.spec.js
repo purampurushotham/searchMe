@@ -14,8 +14,9 @@ describe('Search Service',function () {
         api=_api_
     }));
     it("get Users",function(){
-        var query = {"fields":"firstName,lastName,dateOfBirth,address"};
+        var query = {"fields":"firstName"};
         var result = searchService.getUserDetails(query);
+        console.log(result)
         expect(result.constructor.name).toEqual('Promise');
     });
 });
